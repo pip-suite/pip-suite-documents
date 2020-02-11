@@ -1,0 +1,20 @@
+<md-menu>
+        <ng-transclude class="pip-add-image-open-button" ng-click="vm.openMenu($mdOpenMenu)"
+                xxxng-click="vm.ngDisabled() ? '' : $mdOpenMenu()"></ng-transclude>
+        <md-menu-content width="4">
+            <md-menu-item>
+                <md-button class="layout-row layout-align-start-center" accept="image/*"
+                           ng-keydown="vm.onKeyDown($event)" ng-multiple="vm.isMulti()"
+                           ng-file-select ng-file-change="vm.onFileChange($files)" ng-click="vm.hideMenu()" ng-file-drop>
+                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:folder"></md-icon>
+                    <span class="text-grey">{{ ::'FILE_DOCUMENTS' | translate }}</span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button class="layout-row layout-align-start-center" ng-click="vm.onWebLinkClick()">
+                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:weblink"></md-icon>
+                    <span class="text-grey">{{ ::'WEB_LINK' | translate }}</span>
+                </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>

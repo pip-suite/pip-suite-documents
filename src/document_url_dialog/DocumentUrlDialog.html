@@ -1,0 +1,31 @@
+<md-dialog class="pip-dialog pip-document-url-dialog pip-document-dialog layout-column"
+           md-theme="{{ $ctrl.theme }}">
+
+    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll">
+        <div class="pip-header bm16 layout-row layout-align-start-center">
+            <md-button  ng-click="$ctrl.onCancelClick()" class="md-icon-button lm0"
+                        aria-label="{{ ::'CANCEL' | translate }}">
+                <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>
+            </md-button>
+            <h3 class="text-title m0">
+                {{ ::'DOCUMENT_FROM_WEBLINK' | translate}}
+            </h3>
+        </div>
+
+        <div class="pip-content lp16 rp16">
+            <md-input-container md-no-float class="w-stretch text-subhead1">
+                <input type="text" ng-model="$ctrl.url" ng-change="$ctrl.checkUrl()" placeholder="{{ ::'LINK_DOCUMENT' | translate }}"/>
+            </md-input-container>
+        </div>
+    </md-dialog-content>
+    <div class="pip-footer">
+        <md-button ng-click="$ctrl.onCancelClick()" aria-label="{{ ::'CANCEL' | translate }}">
+            {{ ::'CANCEL' | translate }}
+        </md-button>
+
+        <md-button class="md-accent" ng-click="$ctrl.onAddClick()" 
+                   aria-label="{{ ::'ADD' | translate }}" ng-disabled="!$ctrl.matchURI">
+            {{ ::'ADD' | translate }}
+        </md-button>
+    </div>
+</md-dialog>

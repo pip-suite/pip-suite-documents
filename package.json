@@ -1,0 +1,27 @@
+{
+    "name": "pip-suite-documents",
+    "version": "2.0.0",
+    "author": "Conceptual Vision Consulting LLC",
+    "contributors": [
+        {
+            "name": "Sergey Seroukhov",
+            "email": "seroukhov@gmail.com"
+        },
+        {
+            "name": "Anastas Fonotov",
+            "email": "anastasf@gmail.com"
+        }
+    ],
+    "keywords": [
+        "pip",
+        "webui",
+        "suite",
+        "documents",
+        "controls"
+    ],
+    "noAnalyze": true,
+    "license": "MIT",
+    "private": false,
+    "dependencies": {},
+    "devDependencies": {}
+}

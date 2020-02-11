@@ -1,0 +1,52 @@
+<div pip-focusable>
+	<div class="pip-document-upload pointer md-primary "
+		 ng-class="{'pip-focusable' : !$ctrl.ngDisabled(), 'pip-item-error' : item.state == 'error'}"
+		 ng-keydown="$ctrl.onKeyDown($event, item)"
+		 tabindex="{{ $ctrl.ngDisabled() ? -1 : 0 }}"
+		 ng-repeat="item in $ctrl.control.items | filter: $ctrl.filterItem track by $index">
+
+		<div class="pip-default-icon"
+			 ng-class="{ 'pip-document-new': item.state == 'added' || item.state == 'copied' }">
+			<md-icon pip-cancel-drag="true" class="md-primary" ng-if="item.state == 'original' || item.state == 'added'"
+					 md-svg-icon="icons:{{::$ctrl.documentListIcon}}">
+			</md-icon>
+			<md-icon pip-cancel-drag="true" class="md-warn" ng-if="item.state == 'error'"
+					 md-svg-icon="icons:{{::$ctrl.iconError}}">
+			</md-icon>
+		</div>
+
+		<div class="pip-document-title" pip-cancel-drag="true">
+			{{ item.name }}
+		</div>
+		<md-button ng-click="$ctrl.onDelete(item)"
+				   ng-disabled="$ctrl.isDisabled()"
+				   tabindex="-1"
+				   ng-hide="$ctrl.ngDisabled()"
+				   class="md-icon-button" aria-label="DELETE">
+
+			<md-icon md-svg-icon="icons:cross" pip-cancel-drag="true"></md-icon>
+		</md-button>
+		<md-progress-linear md-mode="determinate" ng-show="item.uploading" ng-value="item.progress"></md-progress-linear>
+	</div>
+	
+	<button class="pip-document-upload pip-document-drop "
+			ng-class="{'pip-focusable' : !$ctrl.ngDisabled()}"
+			ng-keydown="$ctrl.onKeyDown($event)" tabindex="0"
+			xxxng-file-drop xxxng-file-select xxxng-file-change="$ctrl.onSelect($files)"
+			pip-changed="$ctrl.readItemLocally(url, file)"
+			xxng-multiple="true"
+			pip-multi="true"
+			ng-disabled="$ctrl.ngDisabled()"
+			aria-label="UPLOAD"  pip-add-document>
+
+		<div class="pip-default-icon">
+			<md-icon pip-cancel-drag="true" md-svg-icon="icons:{{ ::$ctrl.documentListIcon }}"></md-icon>
+		</div>
+		<div class="pip-default-text">
+			<span>
+				{{ $ctrl.documentListText | translate }}
+			</span>
+		</div>
+	</button>
+	<div class="clearfix"></div>
+</div>

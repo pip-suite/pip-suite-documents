@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html class="no-scroll">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Documents</title>
+
+    <link rel="stylesheet" href="../lib/pip-webui-lib.css" />
+    <link rel="stylesheet" href="../lib/pip-webui-lib-optional.css" />
+    <link rel="stylesheet" href="../lib/pip-webui.css" />
+    <link rel="stylesheet" href="../lib/pip-suite-entry.css" />
+    <link rel="stylesheet" href="../dist/pip-suite-documents.css"/>
+    <link rel="stylesheet" href="styles.css"/>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+    <script src="https://www.google.com/jsapi"></script>
+    <script src="../lib/pip-webui-lib.js"></script>
+    <script src="../lib/pip-webui-lib-optional.js"></script>
+    <script src="../lib/pip-webui.js"></script>
+    <script src="../lib/pip-suite-rest.js"></script>
+    <script src="../lib/pip-suite-entry.js"></script>
+
+    <script src="../dist/pip-suite-documents.js"></script>
+
+    <script src="config.js"></script>
+    <script src="index.js"></script>
+    <script src="documents_controller.js"></script>
+</head>
+
+<body ng-app="appDocuments" ng-controller="pipSampleController" class="layout-column" ng-if="!$reset">
+<pip-main class="pip-main">
+    <pip-appbar>
+    </pip-appbar>
+
+    <pip-sidenav></pip-sidenav>
+
+    <pip-main-body ng-cloak class="pip-main-body layout-column" ng-if="!isEntryPage() || processing">
+        <md-toolbar class="pip-appbar-ext">
+        </md-toolbar>
+        <pip-document class="pip-document">
+            <div class="pip-menu-container">
+                <md-list class="pip-menu pip-simple-list hide-xs"
+                         pip-selected="selected.pageIndex"
+                         pip-selected-watch="selected.state"
+                          pip-select="onNavigationSelect($event.id)">
+                    <md-list-item class="pip-simple-list-item pip-selectable"
+                                  ng-repeat="page in pages track by page.state"
+                                  ng-class="{'selected': pages[selected.pageIndex].state == $state.name}"
+                                  md-ink-ripple
+                                  pip-id="{{:: page.state }}">
+                        <p>{{:: page.title }}</p>
+                    </md-list-item>
+                </md-list>
+                <div class="pip-content-container">
+                    <pip-dropdown class="hide-gt-xs"
+                                  pip-actions="pages"
+                                  pip-dropdown-select="onDropdownSelect"
+                                  pip-active-index="selected.pageIndex"></pip-dropdown>
+                    <div ui-view class="p24 scrolled"></div>
+                </div>
+            </div>
+        </pip-document>
+    </pip-main-body>
+    <pip-main-body ng-if="isEntryPage()" class="pip-main-body" ui-view></pip-main-body>
+</pip-main>
+
+</body>
+</html>

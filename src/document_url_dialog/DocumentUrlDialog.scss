@@ -1,0 +1,46 @@
+.pip-dialog.pip-document-url-dialog {
+  .pip-header {
+    padding: 14px 24px 0px 8px!important;
+  }
+
+  md-input-container {
+    margin-bottom: 0px!important;
+    margin-top: 0px!important;
+  }
+
+  .pip-content {
+    &> div {
+      height: 300px; background-color: #ebebeb;
+    }
+  }
+
+    .pip-no-images {
+      min-height: 160px!important;
+      md-icon {
+        color: black;
+        width: 150px;
+        height: 150px;
+        opacity: 0.118;
+      }
+    }
+
+  .fix-empty {
+    height: calc(100%);
+  }
+
+  md-dialog-content {
+    overflow-y: overlay !important;
+    .pip-content {
+          padding-left: 24px;
+          padding-right: 24px;
+    }
+  }
+  .pip-footer {
+    padding-left: 12px;
+    padding-right: 8px;
+  }
+
+  .pip-fix-empty {
+    height: calc(100%);
+  }
+}

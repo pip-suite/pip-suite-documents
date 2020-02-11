@@ -1,0 +1,39 @@
+<md-button class="pip-documents-name" ng-class="{'lp24-flex rp16': $ctrl.pipDocumentIcon }" ng-click="$ctrl.onTitleClick($event); $ctrl.onResize()"
+    aria-label="RESIZE">
+
+    <div class="layout-align-start-center layout-row w-stretch">
+        <md-icon md-svg-icon="icons:document" ng-class="{'pip-icon': $ctrl.pipDocumentIcon}" ng-if="$ctrl.pipDocumentIcon"></md-icon>
+        <span class="pip-documents-text">
+            {{ $ctrl.documents.length }} {{ ::'DOCUMENTS_ATTACHED' | translate }}
+        </span>
+
+        <md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>
+        <md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>
+    </div>
+</md-button>
+<div pip-focused class="pip-documents-container bm8" ng-class="{ 'lp24-flex rp24-flex': $ctrl.pipDocumentIcon }">
+    <md-button class="pip-document-download md-primary" ng-if="document.uri" ng-class="{'pip-focusable' : !$ctrl.ngDisabled()}"
+        href="{{ document.uri }}" target="_blank" ng-disabled="$ctrl.ngDisabled() || $ctrl.document.error" 
+        ng-repeat="document in $ctrl.documents track by $index"
+        aria-label="DOCUMENT">
+
+        <div class="pip-default-icon">
+            <md-icon md-svg-icon="icons:{{::$ctrl.documentListIcon}}"></md-icon>
+        </div>
+        <div class="pip-document-title">
+            {{ ::document.name }}
+        </div>
+    </md-button>
+    <md-button class="pip-document-download md-primary" ng-if="!document.uri" ng-class="{'pip-focusable' : !$ctrl.ngDisabled()}"
+        ng-click="$ctrl.onDownload(document)" target="_blank" ng-disabled="$ctrl.ngDisabled() || $ctrl.document.error" 
+        ng-repeat="document in $ctrl.documents track by $index"
+        aria-label="DOCUMENT">
+
+        <div class="pip-default-icon">
+            <md-icon md-svg-icon="icons:{{::$ctrl.documentListIcon}}"></md-icon>
+        </div>
+        <div class="pip-document-title">
+            {{ ::document.name }}
+        </div>
+    </md-button>
+</div>

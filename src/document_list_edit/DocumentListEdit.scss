@@ -1,0 +1,71 @@
+$color-blue-hue: blue;
+$color-pink-hue: pink;
+$color-orange-hue: orange;
+$color-amber-hue: amber;
+$color-green-hue: green;
+$color-navy-hue: navy;
+$color-grey-hue: grey;
+$color-dark-hue: dark;
+$color-black-hue: black;
+
+
+.pip-document-list-edit {
+  .pip-document-upload.pip-document-drop {
+    border-style: dashed;
+    background-color: #f0f0f0;
+
+    .pip-default-icon md-icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: $document-side - 10px;
+      height: $document-side - 10px;
+      opacity: .26;
+    }
+
+  }
+
+  .pip-document-upload {
+    border: 1px solid #c9c9c9;
+    border-radius: $border-radius;
+    background-color: $color-content; // todo
+
+  }
+
+  margin: 0 -8px -8px 0;
+  .md-button {
+    min-width: 80px;
+  }
+}
+
+
+@mixin generate-document-focus ($name, $color) {
+  #{$name} {
+
+    .pip-document-list-edit {
+      .pip-document-upload {
+        &:focus {
+          border: 1px solid $color;
+        }
+      }
+    }
+
+    .pip-document-list-edit {
+      .pip-document-upload.pip-document-drop {
+        &:focus {
+          border: 1px solid $color;
+        }
+      }
+    }
+  }
+}
+
+
+@include generate-document-focus('.blue',   $color-blue-hue);
+@include generate-document-focus('.pink',   $color-pink-hue);
+@include generate-document-focus('.orange', $color-orange-hue);
+@include generate-document-focus('.amber',  $color-amber-hue);
+@include generate-document-focus('.green',  $color-green-hue);
+@include generate-document-focus('.navy',   $color-navy-hue);
+@include generate-document-focus('.grey',   $color-grey-hue);
+@include generate-document-focus('.dark',   $color-dark-hue);
+@include generate-document-focus('.black',  $color-black-hue);

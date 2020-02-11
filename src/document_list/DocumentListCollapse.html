@@ -1,0 +1,22 @@
+<div class="pip-documents-name" ng-click="$ctrl.onTitleClick($event); $ctrl.onResize()">
+    <span class="pip-documents-text">
+        {{ documents.length }} {{ ::'DOCUMENTS_ATTACHED' | translate }}
+    </span>
+
+    <md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>
+    <md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>
+</div>
+<div pip-focused class="pip-documents-container bm8">
+    <md-button class="pip-document-download pip-focusable md-primary"
+               href="{{::$ctrl.document.url}}"
+               target="_blank"
+               ng-repeat="document in $ctrl.documents track by document.id"
+               aria-label="DOCUMENT">
+        <div class="pip-default-icon">
+            <md-icon md-svg-icon="icons:{{::$ctrl.icon}}"></md-icon>
+        </div>
+        <div class="pip-document-title">
+            {{ ::$ctrl.document.name }}
+        </div>
+    </md-button>
+</div>
