@@ -2532,7 +2532,26 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('add_documents/AddDocument.html',
-    '<md-menu><ng-transclude class="pip-add-image-open-button" ng-click="vm.openMenu($mdOpenMenu)" xxxng-click="vm.ngDisabled() ? \'\' : $mdOpenMenu()"></ng-transclude><md-menu-content width="4"><md-menu-item><md-button class="layout-row layout-align-start-center" accept="image/*" ng-keydown="vm.onKeyDown($event)" ng-multiple="vm.isMulti()" ng-file-select="" ng-file-change="vm.onFileChange($files)" ng-click="vm.hideMenu()" ng-file-drop=""><md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:folder"></md-icon><span class="text-grey">{{ ::\'FILE_DOCUMENTS\' | translate }}</span></md-button></md-menu-item><md-menu-item><md-button class="layout-row layout-align-start-center" ng-click="vm.onWebLinkClick()"><md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:weblink"></md-icon><span class="text-grey">{{ ::\'WEB_LINK\' | translate }}</span></md-button></md-menu-item></md-menu-content></md-menu>');
+    '<md-menu>\n' +
+    '        <ng-transclude class="pip-add-image-open-button" ng-click="vm.openMenu($mdOpenMenu)"\n' +
+    '                xxxng-click="vm.ngDisabled() ? \'\' : $mdOpenMenu()"></ng-transclude>\n' +
+    '        <md-menu-content width="4">\n' +
+    '            <md-menu-item>\n' +
+    '                <md-button class="layout-row layout-align-start-center" accept="image/*"\n' +
+    '                           ng-keydown="vm.onKeyDown($event)" ng-multiple="vm.isMulti()"\n' +
+    '                           ng-file-select ng-file-change="vm.onFileChange($files)" ng-click="vm.hideMenu()" ng-file-drop>\n' +
+    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:folder"></md-icon>\n' +
+    '                    <span class="text-grey">{{ ::\'FILE_DOCUMENTS\' | translate }}</span>\n' +
+    '                </md-button>\n' +
+    '            </md-menu-item>\n' +
+    '            <md-menu-item>\n' +
+    '                <md-button class="layout-row layout-align-start-center" ng-click="vm.onWebLinkClick()">\n' +
+    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:weblink"></md-icon>\n' +
+    '                    <span class="text-grey">{{ ::\'WEB_LINK\' | translate }}</span>\n' +
+    '                </md-button>\n' +
+    '            </md-menu-item>\n' +
+    '        </md-menu-content>\n' +
+    '    </md-menu>');
 }]);
 })();
 
@@ -2544,7 +2563,45 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('document_list/DocumentList.html',
-    '<md-button class="pip-documents-name" ng-class="{\'lp24-flex rp16\': $ctrl.pipDocumentIcon }" ng-click="$ctrl.onTitleClick($event); $ctrl.onResize()" aria-label="RESIZE"><div class="layout-align-start-center layout-row w-stretch"><md-icon md-svg-icon="icons:document" ng-class="{\'pip-icon\': $ctrl.pipDocumentIcon}" ng-if="$ctrl.pipDocumentIcon"></md-icon><span class="pip-documents-text">{{ $ctrl.documents.length }} {{ ::\'DOCUMENTS_ATTACHED\' | translate }}</span><md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon><md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon></div></md-button><div pip-focused="" class="pip-documents-container bm8" ng-class="{ \'lp24-flex rp24-flex\': $ctrl.pipDocumentIcon }"><md-button class="pip-document-download md-primary" ng-if="document.uri" ng-class="{\'pip-focusable\' : !$ctrl.ngDisabled()}" href="{{ document.uri }}" target="_blank" ng-disabled="$ctrl.ngDisabled() || $ctrl.document.error" ng-repeat="document in $ctrl.documents track by $index" aria-label="DOCUMENT"><div class="pip-default-icon"><md-icon md-svg-icon="icons:{{::$ctrl.documentListIcon}}"></md-icon></div><div class="pip-document-title">{{ ::document.name }}</div></md-button><md-button class="pip-document-download md-primary" ng-if="!document.uri" ng-class="{\'pip-focusable\' : !$ctrl.ngDisabled()}" ng-click="$ctrl.onDownload(document)" target="_blank" ng-disabled="$ctrl.ngDisabled() || $ctrl.document.error" ng-repeat="document in $ctrl.documents track by $index" aria-label="DOCUMENT"><div class="pip-default-icon"><md-icon md-svg-icon="icons:{{::$ctrl.documentListIcon}}"></md-icon></div><div class="pip-document-title">{{ ::document.name }}</div></md-button></div>');
+    '<md-button class="pip-documents-name" ng-class="{\'lp24-flex rp16\': $ctrl.pipDocumentIcon }" ng-click="$ctrl.onTitleClick($event); $ctrl.onResize()"\n' +
+    '    aria-label="RESIZE">\n' +
+    '\n' +
+    '    <div class="layout-align-start-center layout-row w-stretch">\n' +
+    '        <md-icon md-svg-icon="icons:document" ng-class="{\'pip-icon\': $ctrl.pipDocumentIcon}" ng-if="$ctrl.pipDocumentIcon"></md-icon>\n' +
+    '        <span class="pip-documents-text">\n' +
+    '            {{ $ctrl.documents.length }} {{ ::\'DOCUMENTS_ATTACHED\' | translate }}\n' +
+    '        </span>\n' +
+    '\n' +
+    '        <md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>\n' +
+    '        <md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>\n' +
+    '    </div>\n' +
+    '</md-button>\n' +
+    '<div pip-focused class="pip-documents-container bm8" ng-class="{ \'lp24-flex rp24-flex\': $ctrl.pipDocumentIcon }">\n' +
+    '    <md-button class="pip-document-download md-primary" ng-if="document.uri" ng-class="{\'pip-focusable\' : !$ctrl.ngDisabled()}"\n' +
+    '        href="{{ document.uri }}" target="_blank" ng-disabled="$ctrl.ngDisabled() || $ctrl.document.error" \n' +
+    '        ng-repeat="document in $ctrl.documents track by $index"\n' +
+    '        aria-label="DOCUMENT">\n' +
+    '\n' +
+    '        <div class="pip-default-icon">\n' +
+    '            <md-icon md-svg-icon="icons:{{::$ctrl.documentListIcon}}"></md-icon>\n' +
+    '        </div>\n' +
+    '        <div class="pip-document-title">\n' +
+    '            {{ ::document.name }}\n' +
+    '        </div>\n' +
+    '    </md-button>\n' +
+    '    <md-button class="pip-document-download md-primary" ng-if="!document.uri" ng-class="{\'pip-focusable\' : !$ctrl.ngDisabled()}"\n' +
+    '        ng-click="$ctrl.onDownload(document)" target="_blank" ng-disabled="$ctrl.ngDisabled() || $ctrl.document.error" \n' +
+    '        ng-repeat="document in $ctrl.documents track by $index"\n' +
+    '        aria-label="DOCUMENT">\n' +
+    '\n' +
+    '        <div class="pip-default-icon">\n' +
+    '            <md-icon md-svg-icon="icons:{{::$ctrl.documentListIcon}}"></md-icon>\n' +
+    '        </div>\n' +
+    '        <div class="pip-document-title">\n' +
+    '            {{ ::document.name }}\n' +
+    '        </div>\n' +
+    '    </md-button>\n' +
+    '</div>');
 }]);
 })();
 
@@ -2556,7 +2613,29 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('document_list/DocumentListCollapse.html',
-    '<div class="pip-documents-name" ng-click="$ctrl.onTitleClick($event); $ctrl.onResize()"><span class="pip-documents-text">{{ documents.length }} {{ ::\'DOCUMENTS_ATTACHED\' | translate }}</span><md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon><md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon></div><div pip-focused="" class="pip-documents-container bm8"><md-button class="pip-document-download pip-focusable md-primary" href="{{::$ctrl.document.url}}" target="_blank" ng-repeat="document in $ctrl.documents track by document.id" aria-label="DOCUMENT"><div class="pip-default-icon"><md-icon md-svg-icon="icons:{{::$ctrl.icon}}"></md-icon></div><div class="pip-document-title">{{ ::$ctrl.document.name }}</div></md-button></div>');
+    '<div class="pip-documents-name" ng-click="$ctrl.onTitleClick($event); $ctrl.onResize()">\n' +
+    '    <span class="pip-documents-text">\n' +
+    '        {{ documents.length }} {{ ::\'DOCUMENTS_ATTACHED\' | translate }}\n' +
+    '    </span>\n' +
+    '\n' +
+    '    <md-icon class="icon-up" md-svg-icon="icons:triangle-up"></md-icon>\n' +
+    '    <md-icon class="icon-down" md-svg-icon="icons:triangle-down"></md-icon>\n' +
+    '</div>\n' +
+    '<div pip-focused class="pip-documents-container bm8">\n' +
+    '    <md-button class="pip-document-download pip-focusable md-primary"\n' +
+    '               href="{{::$ctrl.document.url}}"\n' +
+    '               target="_blank"\n' +
+    '               ng-repeat="document in $ctrl.documents track by document.id"\n' +
+    '               aria-label="DOCUMENT">\n' +
+    '        <div class="pip-default-icon">\n' +
+    '            <md-icon md-svg-icon="icons:{{::$ctrl.icon}}"></md-icon>\n' +
+    '        </div>\n' +
+    '        <div class="pip-document-title">\n' +
+    '            {{ ::$ctrl.document.name }}\n' +
+    '        </div>\n' +
+    '    </md-button>\n' +
+    '</div>\n' +
+    '');
 }]);
 })();
 
@@ -2568,7 +2647,59 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('document_list_edit/DocumentListEdit.html',
-    '<div pip-focusable=""><div class="pip-document-upload pointer md-primary" ng-class="{\'pip-focusable\' : !$ctrl.ngDisabled(), \'pip-item-error\' : item.state == \'error\'}" ng-keydown="$ctrl.onKeyDown($event, item)" tabindex="{{ $ctrl.ngDisabled() ? -1 : 0 }}" ng-repeat="item in $ctrl.control.items | filter: $ctrl.filterItem track by $index"><div class="pip-default-icon" ng-class="{ \'pip-document-new\': item.state == \'added\' || item.state == \'copied\' }"><md-icon pip-cancel-drag="true" class="md-primary" ng-if="item.state == \'original\' || item.state == \'added\'" md-svg-icon="icons:{{::$ctrl.documentListIcon}}"></md-icon><md-icon pip-cancel-drag="true" class="md-warn" ng-if="item.state == \'error\'" md-svg-icon="icons:{{::$ctrl.iconError}}"></md-icon></div><div class="pip-document-title" pip-cancel-drag="true">{{ item.name }}</div><md-button ng-click="$ctrl.onDelete(item)" ng-disabled="$ctrl.isDisabled()" tabindex="-1" ng-hide="$ctrl.ngDisabled()" class="md-icon-button" aria-label="DELETE"><md-icon md-svg-icon="icons:cross" pip-cancel-drag="true"></md-icon></md-button><md-progress-linear md-mode="determinate" ng-show="item.uploading" ng-value="item.progress"></md-progress-linear></div><button class="pip-document-upload pip-document-drop" ng-class="{\'pip-focusable\' : !$ctrl.ngDisabled()}" ng-keydown="$ctrl.onKeyDown($event)" tabindex="0" xxxng-file-drop="" xxxng-file-select="" xxxng-file-change="$ctrl.onSelect($files)" pip-changed="$ctrl.readItemLocally(url, file)" xxng-multiple="true" pip-multi="true" ng-disabled="$ctrl.ngDisabled()" aria-label="UPLOAD" pip-add-document=""><div class="pip-default-icon"><md-icon pip-cancel-drag="true" md-svg-icon="icons:{{ ::$ctrl.documentListIcon }}"></md-icon></div><div class="pip-default-text"><span>{{ $ctrl.documentListText | translate }}</span></div></button><div class="clearfix"></div></div>');
+    '<div pip-focusable>\n' +
+    '	<div class="pip-document-upload pointer md-primary "\n' +
+    '		 ng-class="{\'pip-focusable\' : !$ctrl.ngDisabled(), \'pip-item-error\' : item.state == \'error\'}"\n' +
+    '		 ng-keydown="$ctrl.onKeyDown($event, item)"\n' +
+    '		 tabindex="{{ $ctrl.ngDisabled() ? -1 : 0 }}"\n' +
+    '		 ng-repeat="item in $ctrl.control.items | filter: $ctrl.filterItem track by $index">\n' +
+    '\n' +
+    '		<div class="pip-default-icon"\n' +
+    '			 ng-class="{ \'pip-document-new\': item.state == \'added\' || item.state == \'copied\' }">\n' +
+    '			<md-icon pip-cancel-drag="true" class="md-primary" ng-if="item.state == \'original\' || item.state == \'added\'"\n' +
+    '					 md-svg-icon="icons:{{::$ctrl.documentListIcon}}">\n' +
+    '			</md-icon>\n' +
+    '			<md-icon pip-cancel-drag="true" class="md-warn" ng-if="item.state == \'error\'"\n' +
+    '					 md-svg-icon="icons:{{::$ctrl.iconError}}">\n' +
+    '			</md-icon>\n' +
+    '		</div>\n' +
+    '\n' +
+    '		<div class="pip-document-title" pip-cancel-drag="true">\n' +
+    '			{{ item.name }}\n' +
+    '		</div>\n' +
+    '		<md-button ng-click="$ctrl.onDelete(item)"\n' +
+    '				   ng-disabled="$ctrl.isDisabled()"\n' +
+    '				   tabindex="-1"\n' +
+    '				   ng-hide="$ctrl.ngDisabled()"\n' +
+    '				   class="md-icon-button" aria-label="DELETE">\n' +
+    '\n' +
+    '			<md-icon md-svg-icon="icons:cross" pip-cancel-drag="true"></md-icon>\n' +
+    '		</md-button>\n' +
+    '		<md-progress-linear md-mode="determinate" ng-show="item.uploading" ng-value="item.progress"></md-progress-linear>\n' +
+    '	</div>\n' +
+    '	\n' +
+    '	<button class="pip-document-upload pip-document-drop "\n' +
+    '			ng-class="{\'pip-focusable\' : !$ctrl.ngDisabled()}"\n' +
+    '			ng-keydown="$ctrl.onKeyDown($event)" tabindex="0"\n' +
+    '			xxxng-file-drop xxxng-file-select xxxng-file-change="$ctrl.onSelect($files)"\n' +
+    '			pip-changed="$ctrl.readItemLocally(url, file)"\n' +
+    '			xxng-multiple="true"\n' +
+    '			pip-multi="true"\n' +
+    '			ng-disabled="$ctrl.ngDisabled()"\n' +
+    '			aria-label="UPLOAD"  pip-add-document>\n' +
+    '\n' +
+    '		<div class="pip-default-icon">\n' +
+    '			<md-icon pip-cancel-drag="true" md-svg-icon="icons:{{ ::$ctrl.documentListIcon }}"></md-icon>\n' +
+    '		</div>\n' +
+    '		<div class="pip-default-text">\n' +
+    '			<span>\n' +
+    '				{{ $ctrl.documentListText | translate }}\n' +
+    '			</span>\n' +
+    '		</div>\n' +
+    '	</button>\n' +
+    '	<div class="clearfix"></div>\n' +
+    '</div>\n' +
+    '');
 }]);
 })();
 
@@ -2580,7 +2711,37 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('document_url_dialog/DocumentUrlDialog.html',
-    '<md-dialog class="pip-dialog pip-document-url-dialog pip-document-dialog layout-column" md-theme="{{ $ctrl.theme }}"><md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll"><div class="pip-header bm16 layout-row layout-align-start-center"><md-button ng-click="$ctrl.onCancelClick()" class="md-icon-button lm0" aria-label="{{ ::\'CANCEL\' | translate }}"><md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon></md-button><h3 class="text-title m0">{{ ::\'DOCUMENT_FROM_WEBLINK\' | translate}}</h3></div><div class="pip-content lp16 rp16"><md-input-container md-no-float="" class="w-stretch text-subhead1"><input type="text" ng-model="$ctrl.url" ng-change="$ctrl.checkUrl()" placeholder="{{ ::\'LINK_DOCUMENT\' | translate }}"></md-input-container></div></md-dialog-content><div class="pip-footer"><md-button ng-click="$ctrl.onCancelClick()" aria-label="{{ ::\'CANCEL\' | translate }}">{{ ::\'CANCEL\' | translate }}</md-button><md-button class="md-accent" ng-click="$ctrl.onAddClick()" aria-label="{{ ::\'ADD\' | translate }}" ng-disabled="!$ctrl.matchURI">{{ ::\'ADD\' | translate }}</md-button></div></md-dialog>');
+    '<md-dialog class="pip-dialog pip-document-url-dialog pip-document-dialog layout-column"\n' +
+    '           md-theme="{{ $ctrl.theme }}">\n' +
+    '\n' +
+    '    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll">\n' +
+    '        <div class="pip-header bm16 layout-row layout-align-start-center">\n' +
+    '            <md-button  ng-click="$ctrl.onCancelClick()" class="md-icon-button lm0"\n' +
+    '                        aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
+    '                <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>\n' +
+    '            </md-button>\n' +
+    '            <h3 class="text-title m0">\n' +
+    '                {{ ::\'DOCUMENT_FROM_WEBLINK\' | translate}}\n' +
+    '            </h3>\n' +
+    '        </div>\n' +
+    '\n' +
+    '        <div class="pip-content lp16 rp16">\n' +
+    '            <md-input-container md-no-float class="w-stretch text-subhead1">\n' +
+    '                <input type="text" ng-model="$ctrl.url" ng-change="$ctrl.checkUrl()" placeholder="{{ ::\'LINK_DOCUMENT\' | translate }}"/>\n' +
+    '            </md-input-container>\n' +
+    '        </div>\n' +
+    '    </md-dialog-content>\n' +
+    '    <div class="pip-footer">\n' +
+    '        <md-button ng-click="$ctrl.onCancelClick()" aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
+    '            {{ ::\'CANCEL\' | translate }}\n' +
+    '        </md-button>\n' +
+    '\n' +
+    '        <md-button class="md-accent" ng-click="$ctrl.onAddClick()" \n' +
+    '                   aria-label="{{ ::\'ADD\' | translate }}" ng-disabled="!$ctrl.matchURI">\n' +
+    '            {{ ::\'ADD\' | translate }}\n' +
+    '        </md-button>\n' +
+    '    </div>\n' +
+    '</md-dialog>');
 }]);
 })();
 
